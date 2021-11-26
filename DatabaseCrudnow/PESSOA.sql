@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[PESSOA] (
+    [ID]       INT          NOT NULL IDENTITY,
+    [NOME]     VARCHAR (50) NULL,
+    [CPF]      VARCHAR (50) NULL,
+    [ENDERECO] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[TELEFONE] (
+    [ID]     INT          NOT NULL,
+    [NUMERO] VARCHAR (50) NULL,
+    [DDD]    VARCHAR (50) NULL,
+    [TIPO]   VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
