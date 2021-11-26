@@ -107,11 +107,10 @@ namespace Crudnow_MVC.modelo.dal
             cmd.ExecuteNonQuery();
         }
 
-
         void deleteDataTabelaEndereco(Pessoa p)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "DELETE ENDERECO FROM ENDERECO e INNER JOIN PESSOA p ON e.ID = p.ENDERECO";
+            cmd.CommandText = "DELETE FROM ENDERECO WHERE ENDERECO.ID = PESSOA.ID";
             cmd.ExecuteNonQuery();
         }
 

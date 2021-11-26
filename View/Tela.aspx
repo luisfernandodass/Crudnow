@@ -10,9 +10,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-         
-       
-
             <h1>Crudnow</h1>
             <div class="divBuscarPeloCPF">
                 <asp:Label runat="server" CssClass="label" Width="180px" Height="22px">Buscar pelo CPF</asp:Label>
