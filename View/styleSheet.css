@@ -1,47 +1,37 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 body {
-    font-family: sans-serif;
-    text-align: center;
-}
-
-.divButtons{
-    width: 10%;
-    position:absolute;
-    top: 98px;
-    left: 620px;
-}
-
-.container {
-    text-align: center;
-    align-self: center;
-    width: 200px;
-}
-
-#form1 {
-
-}
-
-.divBuscarPeloCPF{
-    text-align:center;
-}
-
-h1 {
-    text-align: center;
-    font-family: 'Pangolin', cursive;
+    background-color: #F0EBF8;
+    font-family: 'Roboto', sans-serif;
 }
 
 .label {
-    text-align:left;
+    text-align: left;
+    padding-top: 24px;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.txtBox {
-    border-width: 1px;
-    width: 100%;
+.txtBox{
+    border: 1px solid transparent;
+    border-bottom-color: gray;
 }
 
-.btnsHeader{
-   margin-left: 16px;
+#txtTipoTel {
+    border: 1px solid transparent;
+    border-bottom-color: gray;
+    margin-top: 16px;
+}
+
+.legend {
+    border: 3px solid transparent;
+    color: #0066CC;
+    border-bottom-color: #0066CC;
+    text-align: left;
+    margin-bottom: 0px;
+    width: 300px;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #ImageButtonConsulte, #ImageButtonAltere, #ImageButtonExclua {
@@ -50,5 +40,8 @@ h1 {
 
 #btnInsira {
     cursor: pointer;
-    margin-top: 12px;
+    margin-top: 24px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
 }
