@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Crudnow_MVC.modelo.dal
 {
-
     public class SimuladorDAO : PessoaDAO
     {
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Crudnow;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connectionString =
+        @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Crudnow;Integrated Security=True;
+        Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private static SqlConnection con;
 
@@ -36,7 +32,6 @@ namespace Crudnow_MVC.modelo.dal
                 }
             }
         }
-       
         public void insira(Pessoa pessoa, TipoTelefone telefones)
         {
             inserirTabelaEndereco(pessoa);
@@ -59,14 +54,15 @@ namespace Crudnow_MVC.modelo.dal
             alterarTabelaTelefone(pessoa);
             alterarTabelaTelefoneTipo(telefones);
         }
-        public void exclua(Pessoa pessoa)
+        public void exclua(string cpf)
         {
-           // excluirTabelaTelefone();
-            excluirTabelaPessoa(pessoa);
-            // excluirTabelaEndereco();
+            Pessoa p = new Pessoa();
+            //excluirTabelaEndereco(p);
+            excluirPessoa(cpf, p);
+            return p;
+            //excluirTabelaTelefone();
         }
 
-        // INICÍO dos métodos para inserir
         void inserirTabelaEndereco(Pessoa pessoa)
         {
             SqlCommand cmd = con.CreateCommand();
@@ -111,13 +107,12 @@ namespace Crudnow_MVC.modelo.dal
             cmd.CommandText = "INSERT INTO TELEFONE_TIPO (TIPO) VALUES ('" + telefones.tipo + "');";
             cmd.ExecuteNonQuery();
         }
-        // FIM dos métodos para inserir
 
-        // INICÍO dos métodos para consultar
         Pessoa consultarPessoa(string cpf, Pessoa p)
         {
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT * FROM PESSOA p JOIN ENDERECO e JOIN TELEFONE t ON (SELECT ENDERECO FROM PESSOA) = e.ID ON t.ID = (SELECT ID_TELEFONE FROM PESSOA_TELEFONE) WHERE CPF='" + cpf + "'";
+            cmd.CommandText = "SELECT * FROM PESSOA p JOIN ENDERECO e JOIN TELEFONE t ON (SELECT ENDERECO FROM PESSOA) " +
+                "= e.ID ON t.ID = (SELECT ID_TELEFONE FROM PESSOA_TELEFONE) WHERE CPF='" + cpf + "'";
 
             SqlDataReader reader = cmd.ExecuteReader();
             try
@@ -136,9 +131,7 @@ namespace Crudnow_MVC.modelo.dal
                     p.endereco.estado = reader[10].ToString();
                 }
                 else
-                {
-                    Console.WriteLine("ID não encontrado, verifique o número do ID que você pesquisou");
-                }
+                    Console.WriteLine("CPF não encontrado, verifique o número de CPF que você pesquisou");
             }
             catch (Exception ex)
             {
@@ -148,9 +141,6 @@ namespace Crudnow_MVC.modelo.dal
             return p;
         }
 
-        // FIM dos métodos para consultar
-
-        // INICÍO dos métodos para alterar
         void alterarTabelaEndereco(Pessoa pessoa)
         {
             SqlCommand cmd = con.CreateCommand();
@@ -190,34 +180,19 @@ namespace Crudnow_MVC.modelo.dal
             "' WHERE ID= (SELECT TIPO FROM TELEFONE)";
             cmd.ExecuteNonQuery();
         }
-        // FIM dos métodos para alterar
 
-        // INICÍO dos métodos para excluir
-        void excluirTabelaEndereco()
+        void excluirPessoa(string cpf, Pessoa pessoa)
         {
-            SqlCommand cmd = con.CreateCommand();
-            //cmd.CommandText = " DELETE FROM ENDERECO WHERE ID IN (SELECT q.ID FROM ENDERECO q INNER JOIN PESSOA u on (u.ENDERECO = q.ID))";
-            // cmd.CommandText = "DELETE FROM ENDERECO WHERE ID IN (SELECT ID FROM PESSOA) ";
-            cmd.CommandText = "DELETE FROM ENDERECO";
-
-            cmd.ExecuteNonQuery();
+            SqlCommand cmdTwo = con.CreateCommand();
+            SqlCommand cmdOne = con.CreateCommand();
+            SqlCommand cmdThree = con.CreateCommand();
+            cmdOne.CommandText = "DELETE PESSOA_TELEFONE FROM PESSOA_TELEFONE WHERE ID_PESSOA = (SELECT ID FROM PESSOA)";
+            cmdTwo.CommandText = "DELETE PESSOA FROM PESSOA WHERE CPF='" + cpf + "'";
+            cmdThree.CommandText = "DELETE ENDERECO FROM ENDERECO WHERE (SELECT NUMERO FROM ENDERECO)='" + pessoa.endereco.numero + "'";
+            cmdOne.ExecuteNonQuery();
+            cmdTwo.ExecuteNonQuery();
+            cmdThree.ExecuteNonQuery();
         }
-        void excluirTabelaPessoa(Pessoa pessoa)
-        {
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "DELETE PESSOA FROM PESSOA p JOIN ENDERECO e JOIN TELEFONE t ON (SELECT ENDERECO FROM PESSOA) = e.ID ON t.ID = (SELECT ID_TELEFONE FROM PESSOA_TELEFONE) WHERE CPF='" + pessoa.cpf + "'";
-            // cmd.CommandText = "SELECT * FROM PESSOA p JOIN ENDERECO e JOIN TELEFONE t ON (SELECT ENDERECO FROM PESSOA) = e.ID ON t.ID = (SELECT ID_TELEFONE FROM PESSOA_TELEFONE) WHERE CPF='" + cpf + "'";
-            // cmd.CommandText = "DELETE PESSOA FROM PESSOA WHERE ID=(SELECT ID_PESSOA FROM PESSOA_TELEFONE)";
-            // cmd.CommandText = "DELETE PESSOA FROM PESSOA INNER JOIN ENDERECO ON ENDERECO.ID = PESSOA.ID";
-            cmd.ExecuteNonQuery();
-        }
-        void excluirTabelaTelefone()
-        {
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "DELETE TELEFONE FROM TELEFONE INNER JOIN TELEFONE_TIPO ON TELEFONE_TIPO.ID = TELEFONE.TIPO";
-            cmd.ExecuteNonQuery();
-        }
-      
-        // FIM dos métodos para excluir
     }
 }
+

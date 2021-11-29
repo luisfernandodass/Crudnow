@@ -11,6 +11,8 @@ namespace Crudnow_MVC
         void insira(Pessoa pessoa, TipoTelefone telefones);
         Pessoa consulte(string cpf);
         void altere(Pessoa pessoa, TipoTelefone telefones);
-        void exclua(Pessoa pessoa);
-    }
+        void exclua(string cpf);
+     }
 }
+
+

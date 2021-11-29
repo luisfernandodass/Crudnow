@@ -98,42 +98,7 @@ namespace View
             txtCEP.Text = "";
             txtCidade.Text = "";
             txtUF.Text = "";
-/*
-            string sql =
-          "UPDATE bdcadastro SET NOME='" + txtNome.Text +
-          "', CPF= '" + txtCPF.Text +
-          "', DDD='" + txtDDD.Text +
-          "', TELEFONE='" + txtTelefone.Text +
-          "', TIPO_TELEFONE='" + txtTipoTel.Text +
-          "', ENDERECO= '" + txtLogradouro.Text +
-          "', NUMERO='" + txtNumeroLogradouro.Text +
-          "', BAIRRO='" + txtBairro.Text +
-          "', CEP='" + txtCEP.Text +
-          "', CIDADE= '" + txtCidade.Text +
-          "', UF='" + txtUF.Text +
-          "' WHERE ID=" + txtBuscarPeloCPF.Text;
-
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(sql, con); // recebe a instrução sql e a conexão com o BD
-            cmd.CommandType = CommandType.Text;
-            con.Open();
-            try
-            {
-                int i = cmd.ExecuteNonQuery();
-                if (i > 0)
-                    Console.WriteLine("Seus dados foram atualizados com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro: " + ex.ToString());
-            }
-            finally
-            {
-                con.Close();
-            }
-*/
         }
-        
         protected void btnNew_Click(object sender, ImageClickEventArgs e)
         {
             txtBuscarPeloCPF.Text = "";
@@ -148,22 +113,22 @@ namespace View
             txtCEP.Text = "";
             txtCidade.Text = "";
             txtUF.Text = "";
-        }
+        } // novo registro
         protected void btnExclua_Click(object sender, ImageClickEventArgs e) // excluir
         {
             Pessoa p = new Pessoa();
+            dao.exclua(txtBuscarPeloCPF.Text);
             txtNome.Text = p.nome;
             txtCPF.Text = p.cpf;
             txtDDD.Text = p.telefones.ddd;
             txtTelefone.Text = p.telefones.numero;
             // p.telefones.tipo = txtTipoTel.Text;
             txtLogradouro.Text = p.endereco.logradouro;
-            txtNumeroLogradouro.Text = p.endereco.numero;
+            p.endereco.numero = txtNumeroLogradouro.Text;
             txtBairro.Text = p.endereco.bairro;
             txtCEP.Text = p.endereco.cep;
             txtCidade.Text = p.endereco.cidade;
             txtUF.Text = p.endereco.estado;
-            dao.exclua(p);
             txtBuscarPeloCPF.Text = "";
             txtNome.Text = "";
             txtCPF.Text = "";
