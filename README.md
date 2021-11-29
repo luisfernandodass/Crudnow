@@ -25,7 +25,7 @@ Projeto concluido e entregue dia 29 de novembro de 2021.
 ## Licença
 <img src="https://img.shields.io/github/license/luisfernandodass/Crudnow"/>
 
-## Autor
+## Um dos autores
 
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/67171626?s=460&u=609fc063322b859752a5675bd4e17657e650a389&v=4" width="100px;" alt=""/>
  
