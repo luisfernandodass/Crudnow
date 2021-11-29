@@ -8,10 +8,9 @@ namespace Crudnow_MVC
 {
     public class Telefone
     {
-        protected int id;
-        public string numero;
-        public string ddd;
-        public TipoTelefone tipo;
-
+        protected int id { get; set; }
+        public string numero { get; set; }
+        public string ddd { get; set; }
+        public TipoTelefone tipo { get; set; }
     }
 }

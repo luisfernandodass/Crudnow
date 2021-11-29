@@ -8,9 +8,9 @@ namespace Crudnow_MVC
 {
     public interface PessoaDAO
     {
-        void insira(Pessoa pessoa);
+        void insira(Pessoa pessoa, TipoTelefone telefones);
         Pessoa consulte(string cpf);
-        void altere(Pessoa pessoa);
+        void altere(Pessoa pessoa, TipoTelefone telefones);
         void exclua(Pessoa pessoa);
     }
 }

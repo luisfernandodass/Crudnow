@@ -25,18 +25,22 @@ namespace View
         protected void btnInsira_Click(object sender, EventArgs e) // inserir
         {
             Pessoa p = new Pessoa();
+            TipoTelefone t = new TipoTelefone();
             p.nome = txtNome.Text;
             p.cpf = txtCPF.Text;
             p.telefones.ddd = txtDDD.Text;
             p.telefones.numero = txtTelefone.Text;
-           // p.telefones.tipo = txtTipoTel.Text;
+
+         //   p.telefones.tipo.tipo = txtTipoTel.Text;
+
+            t.tipo = txtTipoTel.Text;
             p.endereco.logradouro = txtLogradouro.Text;
             p.endereco.numero = txtNumeroLogradouro.Text;
             p.endereco.bairro = txtBairro.Text;
             p.endereco.cep = txtCEP.Text;
             p.endereco.cidade = txtCidade.Text;
             p.endereco.estado = txtUF.Text;
-            dao.insira(p);
+            dao.insira(p, t);
             txtNome.Text = "";
             txtCPF.Text = "";
             txtTipoTel.Text = "";
@@ -52,68 +56,49 @@ namespace View
 
        protected void btnConsulte_Click(object sender, ImageClickEventArgs e) // consultar
         {
-            Pessoa pessoa;
-            if (txtNome.Text.Equals(""))
-            {
-                pessoa =dao.consulte(txtCPF.Text);
-            }
-            /*
-            string sql = "SELECT * FROM PESSOA WHERE CPF=" + pessoa.cpf;
-
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.CommandType = CommandType.Text;
-            SqlDataReader reader;
-            con.Open();
-
-            try
-            {
-                reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    txtNome.Focus();
-                    txtNome.Text = reader[1].ToString();
-                    txtCPF.Text = reader[2].ToString();
-                  //  txtDDD.Text = reader[3].ToString();
-                    txtTelefone.Text = reader[4].ToString();
-                    txtTipoTelefone.Text = reader[5].ToString();
-                    txtLogradouro.Text = reader[6].ToString();
-                    txtNumeroLogradouro.Text = reader[7].ToString();
-                    txtBairro.Text = reader[8].ToString();
-                    txtCEP.Text = reader[9].ToString();
-                    txtCidade.Text = reader[10].ToString();
-                    txtUF.Text = reader[11].ToString();
-                }
-                else
-                    Console.WriteLine("ID não encontrado, verifique o número do ID que você pesquisou");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro: " + ex.ToString());
-            }
-            finally
-            {
-                con.Close();
-            }
-            */
-            txtBuscarPeloCPF.Text = "";
+            Pessoa p = new Pessoa();
+            p = dao.consulte(txtBuscarPeloCPF.Text);
+            txtNome.Text = p.nome;
+            txtCPF.Text = p.cpf;
+            txtDDD.Text = p.telefones.ddd;
+            txtTelefone.Text = p.telefones.numero;
+          //  txtTipoTel.Text = p.telefones.tipo.tipo;
+            txtLogradouro.Text = p.endereco.logradouro;
+            txtNumeroLogradouro.Text = p.endereco.numero;
+            txtBairro.Text = p.endereco.bairro;
+            txtCEP.Text = p.endereco.cep;
+            txtCidade.Text = p.endereco.cidade;
+            txtUF.Text = p.endereco.estado;
         }
       
-        protected void btnAltere_Click(object sender, ImageClickEventArgs e) // editar
+        protected void btnAltere_Click(object sender, ImageClickEventArgs e) // alterar
         {
             Pessoa p = new Pessoa();
+            TipoTelefone t = new TipoTelefone();
             p.nome = txtNome.Text;
             p.cpf = txtCPF.Text;
             p.telefones.ddd = txtDDD.Text;
             p.telefones.numero = txtTelefone.Text;
+            t.tipo = txtTipoTel.Text;
             p.endereco.logradouro = txtLogradouro.Text;
             p.endereco.numero = txtNumeroLogradouro.Text;
             p.endereco.bairro = txtBairro.Text;
             p.endereco.cep = txtCEP.Text;
             p.endereco.cidade = txtCidade.Text;
             p.endereco.estado = txtUF.Text;
-            dao.altere(p);
-
+            dao.altere(p, t);
+            txtNome.Text = "";
+            txtCPF.Text = "";
+            txtTipoTel.Text = "";
+            txtDDD.Text = "";
+            txtTelefone.Text = "";
+            txtLogradouro.Text = "";
+            txtNumeroLogradouro.Text = "";
+            txtBairro.Text = "";
+            txtCEP.Text = "";
+            txtCidade.Text = "";
+            txtUF.Text = "";
+/*
             string sql =
           "UPDATE bdcadastro SET NOME='" + txtNome.Text +
           "', CPF= '" + txtCPF.Text +
@@ -146,33 +131,39 @@ namespace View
             {
                 con.Close();
             }
+*/
         }
-
+        
+        protected void btnNew_Click(object sender, ImageClickEventArgs e)
+        {
+            txtBuscarPeloCPF.Text = "";
+            txtNome.Text = "";
+            txtCPF.Text = "";
+            txtTipoTel.Text = "";
+            txtDDD.Text = "";
+            txtTelefone.Text = "";
+            txtLogradouro.Text = "";
+            txtNumeroLogradouro.Text = "";
+            txtBairro.Text = "";
+            txtCEP.Text = "";
+            txtCidade.Text = "";
+            txtUF.Text = "";
+        }
         protected void btnExclua_Click(object sender, ImageClickEventArgs e) // excluir
         {
-          
-            string sql = "DELETE FROM PESSOA WHERE CPF=" + txtBuscarPeloCPF.Text;
-
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.CommandType = CommandType.Text;
-            con.Open();
-
-            try
-            {
-                int i = cmd.ExecuteNonQuery();
-                if (i > 0)
-                    Console.WriteLine("Registro excluído com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro: " + ex.ToString());
-            }
-            finally
-            {
-                con.Close();
-            }
-
+            Pessoa p = new Pessoa();
+            txtNome.Text = p.nome;
+            txtCPF.Text = p.cpf;
+            txtDDD.Text = p.telefones.ddd;
+            txtTelefone.Text = p.telefones.numero;
+            // p.telefones.tipo = txtTipoTel.Text;
+            txtLogradouro.Text = p.endereco.logradouro;
+            txtNumeroLogradouro.Text = p.endereco.numero;
+            txtBairro.Text = p.endereco.bairro;
+            txtCEP.Text = p.endereco.cep;
+            txtCidade.Text = p.endereco.cidade;
+            txtUF.Text = p.endereco.estado;
+            dao.exclua(p);
             txtBuscarPeloCPF.Text = "";
             txtNome.Text = "";
             txtCPF.Text = "";

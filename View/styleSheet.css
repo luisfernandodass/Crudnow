@@ -34,7 +34,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-#ImageButtonConsulte, #ImageButtonAltere, #ImageButtonExclua {
+#ImageButtonConsulte, #ImageButtonNew, #ImageButtonAltere, #ImageButtonExclua {
     margin-left: 12px;
 }
 

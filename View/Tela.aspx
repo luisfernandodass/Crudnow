@@ -13,11 +13,14 @@
         <div style="background-color: #FFFFFF; border-radius: 5px; width: 800px; padding: 24px 48px; margin: auto; position: relative; border: 2px solid gray;">
             <asp:Label runat="server" CssClass="label" Width="300px">Buscar pelo CPF</asp:Label>
             <br />
+
             <asp:TextBox ID="txtBuscarPeloCPF" CssClass="txtBox" runat="server" Width="180px" Height="32px"></asp:TextBox>
             <asp:ImageButton ID="ImageButtonConsulte" runat="server" OnClick="btnConsulte_Click" Height="24px"
                 ImageUrl="./images/search-icon.png" Width="24px" />
+             <asp:ImageButton ID="ImageButtonNew" runat="server" OnClick="btnNew_Click" Height="24px"
+                ImageUrl="./images/plus-icon.png" Width="24px" />
             <asp:ImageButton ID="ImageButtonAltere" runat="server" OnClick="btnAltere_Click" Height="24px"
-                ImageUrl="./images/edit-icon.png" Width="24px" />
+                ImageUrl="./images/save-icon.png" Width="24px" />
             <asp:ImageButton ID="ImageButtonExclua" runat="server" OnClick="btnExclua_Click" Height="24px"
                 ImageUrl="./images/trash-icon.png" Width="24px" />
 
@@ -31,11 +34,7 @@
             <asp:TextBox ID="txtCPF" CssClass="txtBox" runat="server" Width="780px" Height="32px"></asp:TextBox>
             <asp:Label runat="server" CssClass="label" Text="Tipo Tel." Width="780px"></asp:Label>
             <br />
-            <asp:ListBox ID="txtTipoTel" runat="server" Width="780px" Height="21px">
-                <asp:ListItem Value="Residencial"></asp:ListItem>
-                <asp:ListItem Value="Comercial"></asp:ListItem>
-                <asp:ListItem Value="Recado"></asp:ListItem>
-            </asp:ListBox>
+             <asp:TextBox ID="txtTipoTel" CssClass="txtBox" runat="server" Width="780px" Height="32px"></asp:TextBox>
             <asp:Label runat="server" CssClass="label" Width="780px">DDD</asp:Label>
             <br />
             <asp:TextBox ID="txtDDD" CssClass="txtBox" runat="server" Width="780px" Height="32px"></asp:TextBox>

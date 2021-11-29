@@ -42,6 +42,15 @@ namespace View
         protected global::System.Web.UI.WebControls.ImageButton ImageButtonConsulte;
 
         /// <summary>
+        /// Controle ImageButtonNew.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonNew;
+
+        /// <summary>
         /// Controle ImageButtonAltere.
         /// </summary>
         /// <remarks>
@@ -84,7 +93,7 @@ namespace View
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox txtTipoTel;
+        protected global::System.Web.UI.WebControls.TextBox txtTipoTel;
 
         /// <summary>
         /// Controle txtDDD.

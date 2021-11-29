@@ -8,7 +8,7 @@ namespace Crudnow_MVC
 {
     public class TipoTelefone
     {
-        protected int Id { get; set; }
-        public string Tipo { get; set; }
+        protected int id { get; set; }
+        public string tipo { get; set; }
     }
 }
